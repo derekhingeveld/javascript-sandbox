@@ -1,62 +1,39 @@
-/*
-Primitive Data Types vs. Reference Types
+let val;
 
-Primitive Data Types:
-Stored directly in the location the variable accesses
-Stored on the stack
+// Number to string
+val = String(555);
+val = String(4+4);
+// Bool to string
+val = String(true);
+// Date to string
+val = String(new Date());
+// Array to string
+val = String([1,2,3,4])
 
-Reference Data Types:
-Accessed by reference
-Objects that are stored on the heap
-A pointer to a location in memory
+// toString() method
+val = (5).toString();
+val = (true).toString();
 
-Primitive Data Types
-String
-Number
-Boolean
-Null
-Undefined
-Symbols (ES6)
+// String to number
+val = Number('5');
+val = Number(true);
+val = Number(false);
+val = Number(null);
+val = Number('hello');
+val = Number([1,2,3]);
 
-Reference Data Types / Objects
-Arrays
-Object Literals
-Functions
-Dates
-Anything Else...
+val = parseInt('100.30');
+val = parseFloat('100.30');
 
-Dynamically Type Language
-Types are associated with values not variables
-The same variable can hold multiple types
-We do not need to specify types
-Most other languages are statically types (Java, C#, C++)
-There are supersets of JS and addons to allow static typing (TypeScript, Flow)
-*/
+// Output
+// console.log(val);
+// console.log(typeof val);
+// console.log(val.length); // length only works on strings
+// console.log(val.toFixed(2));
 
-// PRIMITIVE TYPES
+const val1 = String(5);
+const val2 = 6;
+const sum = Number(val1 + val2);
 
-// String
-const name = "John Doe";
-// Number
-const age = 45;
-// Boolean
-const hasKids = true;
-// Null
-const car = null;
-// Undefined
-let test;
-// Symbol
-const sym = Symbol();
-
-// REFERENCE TYPES - Objects
-
-// Array
-const hobbies = ["movies", "music"];
-// Object literal
-const address = {
-  city: "Boston",
-  state: "MA",
-};
-const today = new Date();
-console.log(today);
-console.log(typeof today);
+console.log(sum);
+console.log(typeof sum);
