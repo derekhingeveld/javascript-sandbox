@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Sandbox | Terms</title>
+</head>
+<body>
+  <h1>Terms and Definitions</h1>
+  <h2>Barrel</h2>
+  <p>A barrel is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.</p>
+  <p>Imagine the following class structure in a library:</p>
+  
+  <code>
+    // demo/foo.ts<br>
+    export class Foo {}<br>
+    <br>
+    // demo/bar.ts<br>
+    export class Bar {}<br>
+    <br>
+    // demo/baz.ts<br>
+    export class Baz {}<br>
+  </code>
+
+  <p>Without a barrel, a consumer would need three import statements:</p>
+
+  <code>
+    import { Foo } from '../demo/foo';<br>
+  import { Bar } from '../demo/bar';<br>
+  import { Baz } from '../demo/baz';<br>
+  </code>
+
+  <p>You can instead add a barrel demo/index.ts containing the following:</p>
+
+  <code>
+    // demo/index.ts<br>
+    export * from './foo'; // re-export all of its exports<br>
+    export * from './bar'; // re-export all of its exports<br>
+    export * from './baz'; // re-export all of its exports<br>
+  </code>
+
+  <p>Now the consumer can import what it needs from the barrel:</p>
+
+  <code>
+    import { Foo, Bar, Baz } from '../demo'; // demo/index.ts is implied
+  </code>
+
+  <hr>
+
+  <h2>Named exports</h2>
+
+  <p>Instead of exporting *, you can choose to export the module in a name. E.g., assume that baz.ts has functions:</p>
+
+  <code>
+    // demo/foo.ts<br>
+    export class Foo {}<br>
+    <br>
+    // demo/bar.ts<br>
+    export class Bar {}<br>
+    <br>
+    // demo/baz.ts<br>
+    export function getBaz() {}<br>
+    export function setBaz() {}<br>
+  </code>
+
+  <p>If you would rather not export getBaz / setBaz from demo you can instead put them in a variable by importing them in a name and exporting that name as shown below:</p>
+
+  <code>
+    // demo/index.ts
+    export * from './foo'; // re-export all of its exports<br>
+    export * from './bar'; // re-export all of its exports<br>
+    <br>
+    import * as baz from './baz'; // import as a name<br>
+    export { baz }; // export the name<br>
+  </code>
+
+  <p>And now the consumer would look like:</p>
+
+  <code>
+    import { Foo, Bar, baz } from '../demo'; // demo/index.ts is implied<br>
+    <br>
+    // usage<br>
+    baz.getBaz();<br>
+    baz.setBaz();<br>
+    // etc. ...<br>
+  </code>
+</body>
+</html>
